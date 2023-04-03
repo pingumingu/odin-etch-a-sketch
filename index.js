@@ -1,7 +1,5 @@
 let numberOfSquares = 16;
 
-
-
 let createBoxes = function(numberOfSquares) {
 
     gridContainer = document.querySelector(".grid");
@@ -39,14 +37,22 @@ let createBoxes = function(numberOfSquares) {
     }
 }
 
-createBoxes(numberOfSquares)
+createBoxes(numberOfSquares);
 
 const sideDimensionButton = document.querySelector('#dimension-button');
 sideDimensionButton.addEventListener('click', (event) => {
     event.preventDefault();
-    inputField = document.querySelector('#number');
-    numberOfSquares = parseInt(inputField.value);
-    createBoxes(numberOfSquares);
+    let inputField = document.querySelector('#number');
+    if (parseInt(inputField.value)>0 && parseInt(inputField.value)<=100) {
+        numberOfSquares = parseInt(inputField.value);
+        createBoxes(numberOfSquares);
+    } else {
+        dimensionForm = document.querySelector('.dimension-form');
+        warningText = document.createElement('div');
+        warningText.textContent = "Please choose a number between 1 and 100";
+        dimensionForm.appendChild(warningText);
+    }
+    
 })
 
 
